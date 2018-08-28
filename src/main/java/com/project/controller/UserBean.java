@@ -7,6 +7,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.logging.log4j.Logger;
+
 import com.project.entity.User;
 import com.project.service.UserService;
 
@@ -16,10 +18,13 @@ public class UserBean implements Serializable{
 
 	private static final long serialVersionUID = -4069657624157222269L;
 
-private User user;
+	@Inject
+	private Logger logger;
 	
 	@Inject
 	private UserService userService;
+
+	private User user;
 	
 	@PostConstruct
 	private void instance() {
@@ -33,14 +38,15 @@ private User user;
 	public void save() {
 		user.setName("name user");
 		try {
-			userService.save(user);
+			User u = userService.save(user);
+			logger.info("Save a user:{} from id {}", u.getName(), u.getId());
 			newEntity();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	/* getters and settters */
+	/* getters and setters */
 	
 	public User getUser() {
 		return user;

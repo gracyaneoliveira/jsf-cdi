@@ -6,9 +6,28 @@
   <packaging>war</packaging>
   
   <properties>
+  		<!-- cdi -->
 		<cdi.version>1.2</cdi.version>
+		
+		<!-- weld impl cdi -->
+		<weld.version>2.4.2.Final</weld.version>
+		
+		<!-- jsf -->
 		<jsf.version>2.2.13</jsf.version>
+		
+		<!-- servlet -->
 		<servlet.version>3.1.0</servlet.version>
+		
+		<!-- hibernate -->
+		<hibernate.version>5.3.5.final</hibernate.version>
+		
+		<!-- mysql -->
+		<mysql.version>5.1.37</mysql.version>
+		
+		<!-- log4j -->
+		<log4j.version>2.6</log4j.version>
+		<jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version>
+		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
@@ -19,57 +38,91 @@
 	       <artifactId>cdi-api</artifactId>
 	       <version>${cdi.version}</version>
 		</dependency>
+		
 		<!--JBoss/Weld implementação de referência do CDI 
     	para Servlet Container(Exemplo:Tomcat)  -->
 	    <dependency>  
 		  	<groupId>org.jboss.weld.servlet</groupId>
 		  	<artifactId>weld-servlet</artifactId>
-		  	<version>2.4.2.Final</version>
+		  	<version>${weld.version}</version>
 		  	<scope>compile</scope>
 	    </dependency>
+		
 		<!-- Mojarra JSF API-->
 	    <dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>${jsf.version}</version>
 	    </dependency>
+		
 		<!-- Mojarra JSF Impl -->
 	    <dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
 			<version>${jsf.version}</version>
 	    </dependency>
+		
 		<!-- Servlet -->
 		<dependency>
 		    <groupId>javax.servlet</groupId> 
 		    <artifactId>javax.servlet-api</artifactId>
 		    <version>${servlet.version}</version>
 		</dependency>
+		
+		<!-- Hibernate Validator -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.3.5.Final</version>
+			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- Hibernate Core -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.3.5.Final</version>
+			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- Hibernate EntityManager -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.3.5.Final</version>
+			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		 <!-- DEPENDENCIA MYSQL -->
+		
+		<!-- MYSQL -->
     	<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.37</version>
+			<version>${mysql.version}</version>
     	</dependency>
-    </dependencies>
+    	
+    	<!-- Logging -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcl-over-slf4j.version}</version>
+		</dependency>
+    	
+  </dependencies>
   
   <build>
 		<finalName>jsf-cdi</finalName>

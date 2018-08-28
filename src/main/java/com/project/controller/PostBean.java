@@ -8,6 +8,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.logging.log4j.Logger;
+
 import com.project.entity.Post;
 import com.project.service.PostService;
 
@@ -17,11 +19,14 @@ public class PostBean implements Serializable{
 
 	private static final long serialVersionUID = 3703541272682037660L;
 	
-	private Post post;
+	@Inject
+	private Logger logger;
 	
 	@Inject
 	private PostService postService;
 	
+	private Post post;
+
 	@PostConstruct
 	private void instance() {
 		newEntity();
@@ -35,14 +40,15 @@ public class PostBean implements Serializable{
 		post.setPost("Injeção de dependência com CDI!");
 		post.setDatePost(new Date());
 		try {
-			postService.save(post);
+			Post ps = postService.save(post);
+			logger.info("Save a post:{} from id {}", ps.getPost(), ps.getId());
 			newEntity();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	/* getters and settters */
+	/* getters and setters */
 	
 	public Post getPost() {
 		return post;
